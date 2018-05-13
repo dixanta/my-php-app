@@ -7,6 +7,8 @@
     <title>Document</title>
 </head>
 <body>
+    <?php for($i=1;$i<=10;$i++):?>
     <h1><?php echo "Hello world";?></h1>
+<?php endfor;?>
 </body>
 </html>
