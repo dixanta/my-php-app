@@ -17,4 +17,5 @@ status boolean);
 
 alter table enquiries add foreign key(course_id) references courses(id);
 
-alter table enquiries add timing int after course_id;
+alter table enquiries add timing int;
+alter table enquiries add message text;

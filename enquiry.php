@@ -1,4 +1,21 @@
 <?php include_once("shared/header.php")?>
+<?php
+    if($_SERVER['REQUEST_METHOD']=='POST'){
+        $db=connect();
+        $sql="insert into enquiries(first_name,last_name,email,
+              contact_no,course_id,message,status) 
+              values($1,$2,$3,$4,$5,$6,$7)";
+        $params=[
+            $_POST['first_name'],$_POST['last_name'],$_POST['email'],
+            $_POST['contact_no'],$_POST['course_id'],$_POST['message'],
+            'false'
+        ];
+        $result=execute($db,$sql,$params);
+        close($db);
+
+    }
+?>
+
     <div class="page-header">
         <h1>Enquiry Form</h1>
     </div>
@@ -36,7 +53,7 @@
             <div class="col-md-4">
                 <div class="form-group">
                     <label>Interested Course</label>
-                    <select name="coure_id" class="form-control" required="required">
+                    <select name="course_id" class="form-control" required="required">
                         <option value="">Select Interested Course</option>
                         <?php
                             $db=connect();
