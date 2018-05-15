@@ -1,14 +1,19 @@
 <?php include_once("shared/header.php")?>
     <?php
         
-        $db=connect();
-        $sql="select * from courses";
-        $query=query($db,$sql);
+        //$db=connect();
+        $db=new mysqli('localhost','root','admin','php18002_hr');
 
-        while(($row=fetch_record($query))){
+        $sql="select * from courses";
+        $stmt=$db->prepare($sql);
+        $stmt->execute();
+        //$query=query($db,$sql);
+        $result=$stmt->get_result();
+
+        while(($row=$result->fetch_assoc())){
             echo "<li>".$row['course_name'] ."</li>";
         }
-
-        close($db);
+        $db->close();
+        //close($db);
     ?>
 <?php include_once("shared/footer.php")?>
